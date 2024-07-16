@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MVCModelBindingPizzaForm.Models;
 
 namespace MVCModelBindingPizzaForm.Controllers
 {
@@ -8,6 +9,19 @@ namespace MVCModelBindingPizzaForm.Controllers
         public IActionResult Pizza()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Pizza(Pizza p)
+        {
+            if (ModelState.IsValid)
+            {
+                // Add to database
+                // PizzaDatabase.Add(p);
+
+                return RedirectToAction("Index", "Home");
+            }
+            return View(p);
         }
     }
 }
